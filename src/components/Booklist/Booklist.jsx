@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import API_URL from '../../apiConfig';
 
 function Booklist(props) {
+    useEffect(() => {
+        fetch(`${API_URL}flowers+inauthor:keyes&key=${process.env.API_KEY}`)
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+            })
+    }, [])
     return (
         <div>
            Book list 

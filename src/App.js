@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path='/about' element={<About />} />
         <Route path='/book/:id' element={<BookDetail />} />
-        <Route path='/books' element={<Booklist />} />
+        <Route path='/' element={<Booklist />} />
         <Route path='/login' element={<Login />} />
         <Route path='/new-book' element={<NewBook />} />
       </Routes>
