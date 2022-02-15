@@ -6,6 +6,7 @@ import BookDetail from './components/BookDetail/BookDetail';
 import Booklist from './components/Booklist/Booklist';
 import Login from './components/Login/Login';
 import NewBook from './components/NewBook/NewBook';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
