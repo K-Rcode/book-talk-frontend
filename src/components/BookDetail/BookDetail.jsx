@@ -8,6 +8,7 @@ function BookDetail(props) {
 	const [bookData, setBookData] = useState(null);
 	useEffect(() => {
 		getSpecificBook();
+		//eslint-disable-next-line
 	}, []);
 
 	// Call to our API to get detailed book info
@@ -17,7 +18,7 @@ function BookDetail(props) {
 			const data = await res.json();
 			setBookData(data);
 		} catch (error) {
-			// console.log(error)
+			console.log(error)
 		}
 	}
 
