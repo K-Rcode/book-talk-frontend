@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Comments({ comments }) {
+function Comments({ comments, logInStatus }) {
 	return (
 		<div>
 			{comments.map((comment) => {
@@ -11,9 +11,13 @@ function Comments({ comments }) {
 							Coment by: {comment.owner} on{' '}
 							{comment.time_stamp.substring(0, 10)}
 						</p>
-						<input type='text-area' placeholder='Comment here'></input>
-						<br />
-						<button>Add Comment</button>
+						{logInStatus && (
+							<>
+								<input type='text-area' placeholder='Comment here'></input>
+								<br />
+								<button>Add Comment</button>
+							</>
+						)}
 					</div>
 				);
 			})}
