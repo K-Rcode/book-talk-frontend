@@ -8,6 +8,9 @@ function BookDetail({ logInStatus, userData }) {
 	const [bookData, setBookData] = useState(null);
 	useEffect(() => {
 		getSpecificBook();
+		return () => {
+			setBookData(null)
+		}
 		//eslint-disable-next-line
 	}, []);
 
