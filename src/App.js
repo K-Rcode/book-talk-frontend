@@ -11,71 +11,68 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import API_URL from './apiConfig';
 
-
 function App() {
-  const [logInStatus, setLogInStatus] = useState(
+	const [logInStatus, setLogInStatus] = useState(
 		localStorage.getItem('token') ? true : false
-  );
-  const [userData, setUserData] = useState(null);
+	);
+	const [userData, setUserData] = useState(null);
 
 	useEffect(() => {
 		if (logInStatus) {
-      getUserData();
-    }
-  }, [logInStatus]);
-  
-  const getUserData = async () => {
-    try {
-      const res = await fetch(`${API_URL.url}users/me/`, {
+			getUserData();
+		}
+	}, [logInStatus]);
+
+	const getUserData = async () => {
+		try {
+			const res = await fetch(`${API_URL.url}users/me/`, {
 				headers: {
 					Authorization: `Token ${localStorage.getItem('token')}`,
 				},
-      });
-      
+			});
+
 			if (res.status === 200) {
-        const data = await res.json();
+				const data = await res.json();
 				setUserData(data);
 			} else {
 				setUserData(null);
 				setLogInStatus(false);
 				localStorage.clear();
-      }
-      
-    } catch (error) {
-      console.log(error)
-    }
-  }
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	const handleSetLogIn = (token) => {
 		localStorage.setItem('token', token);
 		setLogInStatus(true);
-  };
-  
-  const handleLogout = async () => {
-    // axios.post(`${API_URL}token/logout`, localStorage.getItem('token'));
-
-	  try {
-		  const response = await fetch(`${API_URL.url}token/logout`, {
-			  method: 'POST',
-			  body: JSON.stringify(localStorage.getItem('token')),
-			  headers: {
-				  'Content-Type': 'application/json',
-				  Authorization: `Token ${localStorage.getItem('token')}`,
-			  },
-		  });
-		  console.log(response);
-		  if (response.status === 204) {
-			  setUserData(null);
-			  setLogInStatus(false);
-			  localStorage.clear();
-		  }
-	  } catch (error) {
-		  console.log(error)
-	  }
 	};
 
+	const handleLogout = async () => {
+		// axios.post(`${API_URL}token/logout`, localStorage.getItem('token'));
 
-  return (
+		try {
+			const response = await fetch(`${API_URL.url}token/logout`, {
+				method: 'POST',
+				body: JSON.stringify(localStorage.getItem('token')),
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Token ${localStorage.getItem('token')}`,
+				},
+			});
+			console.log(response);
+			if (response.status === 204) {
+				setUserData(null);
+				setLogInStatus(false);
+				localStorage.clear();
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	return (
 		<div className='App'>
 			<Navigation
 				handleLogout={handleLogout}
@@ -86,7 +83,7 @@ function App() {
 				<Route path='/about' element={<About />} />
 				<Route
 					path='/book/:id'
-					element={<BookDetail logInStatus={logInStatus} />}
+					element={<BookDetail logInStatus={logInStatus} userData={userData} />}
 				/>
 				<Route path='/' element={<Booklist />} />
 				<Route

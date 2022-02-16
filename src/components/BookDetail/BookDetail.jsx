@@ -3,7 +3,7 @@ import API_URL from '../../apiConfig';
 import { useParams } from 'react-router-dom';
 import Comments from '../Comments/Comments';
 
-function BookDetail({ logInStatus }) {
+function BookDetail({ logInStatus, userData }) {
 	const { id } = useParams();
 	const [bookData, setBookData] = useState(null);
 	useEffect(() => {
@@ -18,7 +18,7 @@ function BookDetail({ logInStatus }) {
 			const data = await res.json();
 			setBookData(data);
 		} catch (error) {
-			console.log(error)
+			console.log(error);
 		}
 	}
 
@@ -36,7 +36,12 @@ function BookDetail({ logInStatus }) {
 					<p>{bookData.description}</p>
 				</div>
 				<p>This conversation started by: {bookData.owner}</p>
-				<Comments comments={bookData.comments} logInStatus={logInStatus} />
+				<Comments
+					comments={bookData.comments}
+					logInStatus={logInStatus}
+					userData={userData}
+					getSpecificBook={getSpecificBook}
+				/>
 			</div>
 		</>
 	);
