@@ -31,6 +31,7 @@ function BookDetail(props) {
 				<div className='book-detail'>
 					<img src={bookData.image} alt={bookData.title} />
 					<p>{bookData.category}</p>
+					<p>Description:</p>
 					<p>{bookData.description}</p>
 				</div>
 				<p>This conversation started by: {bookData.owner}</p>
