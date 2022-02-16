@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import API_URL from '../../apiConfig';
 import NewBookForm from '../NewBookForm/NewBookForm';
 
-function NewBook(props) {
+function NewBook({ logInStatus }) {
     const [formState, setFormState] = useState({
         title: '',
         author: '',

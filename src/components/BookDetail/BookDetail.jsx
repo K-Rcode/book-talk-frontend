@@ -3,7 +3,7 @@ import API_URL from '../../apiConfig';
 import { useParams } from 'react-router-dom';
 import Comments from '../Comments/Comments';
 
-function BookDetail(props) {
+function BookDetail({ logInStatus }) {
 	const { id } = useParams();
 	const [bookData, setBookData] = useState(null);
 	useEffect(() => {
@@ -36,7 +36,7 @@ function BookDetail(props) {
 					<p>{bookData.description}</p>
 				</div>
 				<p>This conversation started by: {bookData.owner}</p>
-				<Comments comments={bookData.comments} />
+				<Comments comments={bookData.comments} logInStatus={logInStatus} />
 			</div>
 		</>
 	);
