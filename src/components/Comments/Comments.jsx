@@ -45,6 +45,7 @@ function Comments({ comments, logInStatus, userData, getSpecificBook }) {
 	function handleClick() {
 		setLoading(true);
 		postComment();
+		setNewComment({ ...newComment, body: '' })
 	}
 
 	return (
