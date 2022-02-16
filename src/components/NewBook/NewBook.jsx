@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import API_URL from '../../apiConfig';
 import NewBookForm from '../NewBookForm/NewBookForm';
+import NotFoundModal from '../NotFoundModal/NotFoundModal';
 
 function NewBook({ logInStatus }) {
+    const [modalShow, setModalShow] = React.useState(false)
     const [formState, setFormState] = useState({
         title: '',
         author: '',
@@ -11,6 +13,7 @@ function NewBook({ logInStatus }) {
         topic: ''
     })
     const [searchResults, setSearchResults] = useState();
+    const navigate = useNavigate();
     
     const handleChange = (e) => {
         setFormState({...formState, [e.target.id]: e.target.value})
@@ -27,8 +30,6 @@ function NewBook({ logInStatus }) {
         let url = `${API_URL.google}${(formState.topic ? formState.topic.replaceAll(' ', '-') : '')}${(formState.author ? API_URL.author + formState.author.replaceAll(' ', '-') : '')}${(formState.title ? API_URL.title + formState.title.replaceAll(' ', '-') : '')}${(formState.genre ? API_URL.genre + formState.genre.replaceAll(' ', '-') : '')}&key=${process.env.REACT_APP_API_KEY}`
 
         try {
-            // const res = await fetch(`${API_URL.google}${formState.topic}+inauthor:${formState.author}+intitle:${formState.title}+subject:${formState.genre}&key=${process.env.REACT_APP_API_KEY}`)
-
             const res = await fetch(url)
             const data = await res.json()
             console.log(data)
@@ -38,8 +39,24 @@ function NewBook({ logInStatus }) {
         }
     }
 
-    const handleClick = () => {
+    const handleClick = (id) => {
         console.log('hi')
+        getDatabaseExist(id)
+    }
+
+    const getDatabaseExist = async (id) => {
+        try {
+            const res = await fetch(`${API_URL.url}books/?search=${id}`)
+            const data = await res.json()
+
+            if (data.length) {
+                navigate(`/book/${data[0].id}`)
+            } else {
+                setModalShow(true)     
+            }
+        } catch (error) {
+            
+        }
     }
     
     return (
@@ -52,15 +69,17 @@ function NewBook({ logInStatus }) {
             
             {searchResults ? searchResults.map((result) => {
                 return (
-                    <div key={result.id} onClick={handleClick}>
-                        {/* <Link to={`/book/${result}`} > */}
+                    <div key={result.id} onClick={() => handleClick(result.id)}>
                         <p>{result.volumeInfo.title}</p>
                             <img src={result.volumeInfo.imageLinks.thumbnail} alt={result.volumeInfo.title} />
-                            {/* </Link> */}
                     </div>
                 )
             }) :
-            ''}
+                ''}
+            <NotFoundModal
+                show={modalShow}
+        onHide={() => setModalShow(false)}
+            />
         </div>
         );
     }
