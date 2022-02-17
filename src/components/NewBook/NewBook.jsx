@@ -33,7 +33,6 @@ function NewBook({ logInStatus }) {
         try {
             const res = await fetch(url)
             const data = await res.json()
-            console.log(data)
             setSearchResults(data.items)
         } catch (error) {
             console.log(error)
@@ -72,7 +71,7 @@ function NewBook({ logInStatus }) {
                 return (
                     <div key={result.id} onClick={() => handleClick(result.id, result)}>
                         <p>{result.volumeInfo.title}</p>
-                        <img src={result.volumeInfo.imageLinks.thumbnail ? result.volumeInfo.imageLinks.thumbnail : "https://image.shutterstock.com/image-vector/no-image-available-vector-hand-260nw-745639717.jpg"} alt={result.volumeInfo.title} />
+                        <img src={result.volumeInfo.imageLinks ? result.volumeInfo.imageLinks.thumbnail : "https://image.shutterstock.com/image-vector/no-image-available-vector-hand-260nw-745639717.jpg"} alt={result.volumeInfo.title} />
                     </div>
                 )
             })}
