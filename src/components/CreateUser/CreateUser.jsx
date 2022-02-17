@@ -32,9 +32,18 @@ function CreateUser(props) {
 	async function createUser(event) {
 		event.preventDefault();
 		checkMatchPword();
-		console.log(formData);
-		const res = await axios.post(`${API_URL.url}users/`, formData);
-		console.log(res)
+
+		try {
+			const res = await axios.post(`${API_URL.url}users/`, formData);
+			if (res.status === 201) {
+				setSuccess(true);
+				setTimeout(() => {
+					navigate('/login');
+				}, 3000);
+			}
+		} catch (error) {
+			alert(error);
+		}
 	}
 
 	return (
