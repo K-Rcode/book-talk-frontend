@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
+import { TiDelete } from 'react-icons/ti';
 import API_URL from '../../apiConfig';
 
 function Comments({ comments, logInStatus, userData, getSpecificBook }) {
@@ -33,7 +34,6 @@ function Comments({ comments, logInStatus, userData, getSpecificBook }) {
 	}
 
 	async function postComment() {
-		// console.log('hello');
 		const res = await axios.post(`${API_URL.url}comments/`, newComment, {
 			headers: {
 				Authorization: `Token ${localStorage.getItem('token')}`,
@@ -48,12 +48,27 @@ function Comments({ comments, logInStatus, userData, getSpecificBook }) {
 		setNewComment({ ...newComment, body: '' })
 	}
 
+	async function handleDelete(comment) {
+		console.log(comment.id);
+		const res = await axios.delete(`${API_URL.url}comments/${comment.id}`, {
+			headers: {
+				Authorization: `Token ${localStorage.getItem('token')}`,
+			},
+		});
+		console.log(res);
+	}
+
 	return (
 		<div>
 			{comments.map((comment) => {
 				return (
 					<div key={comment.id}>
-						<p>{comment.body}</p>
+						<p className='comment-body'>{comment.body}</p>
+						<TiDelete
+							onClick={() => {
+								handleDelete(comment);
+							}}
+						/>
 						<p>
 							Coment by: {comment.owner} on{' '}
 							{comment.time_stamp.substring(0, 10)}
