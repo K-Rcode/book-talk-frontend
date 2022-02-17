@@ -1,8 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button'
-// import axios from 'axios';
+import { Modal, Button } from 'react-bootstrap';
 import API_URL from '../../apiConfig';
 
 function NotFoundModal(props) {
@@ -14,20 +12,15 @@ function NotFoundModal(props) {
   const createBook = async () => {
     let book = {
       title: props.currentpick.volumeInfo.title,
-      author: props.currentpick.volumeInfo.authors[0],
+      author: props.currentpick.volumeInfo.authors ? props.currentpick.volumeInfo.authors[0] : 'Unknown',
       image: props.currentpick.volumeInfo.imageLinks.thumbnail,
-      category: props.currentpick.volumeInfo.categories[0],
+      category: props.currentpick.volumeInfo.categories ? props.currentpick.volumeInfo.categories[0] : 'Unknown',
       description: props.currentpick.volumeInfo.description,
       publisher: props.currentpick.volumeInfo.publisher,
       published_date: props.currentpick.volumeInfo.publishedDate,
       google_id: props.currentpick.id,
       preview_link: props.currentpick.volumeInfo.previewLink
     }
-    // const res = await axios.post(`${API_URL.url}books/`, book, {
-    //   headers: {
-    //     Authorization: `Token ${localStorage.getItem('token')}`,
-    //   },
-    // })
 
     const res = await fetch(`${API_URL.url}books/`, {
       method: 'POST',
@@ -43,15 +36,10 @@ function NotFoundModal(props) {
         fetch(`${API_URL.url}books/?search=${props.currentpick.id}`)
           .then(res => res.json())
           .then(res => {
-            console.log(res[0].id)
-            // navigate(`/book/${res[0].id}`)
             navigate('/')
           })
-        console.log()
-      }
-        
-      }, 2500)
-
+      }    
+      }, 1500)
   }
 
   return (
