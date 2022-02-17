@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import API_URL from '../../apiConfig';
 import axios from 'axios';
+import Alert from '@mui/material/Alert';
 
 function Login({ handleSetLogIn }) {
     const [formState, setFormState] = useState({
         username: '',
         password: ''
     });
-    // const [error, setError] = useState(false);
+    const [error, setError] = useState(false);
     const navigate = useNavigate();
 
 
@@ -20,10 +21,10 @@ function Login({ handleSetLogIn }) {
                 if (res.status === 200) {
                     handleSetLogIn(res.data.auth_token)
                     navigate('/')
-                } else {
-                    console.log('hi')
-                    // setError(true)
-                }
+                } 
+            })
+            .catch(err => {
+                setError(true) 
         })
     }
 
@@ -38,7 +39,6 @@ function Login({ handleSetLogIn }) {
 				<Form.Group controlId='username'>
 					<Form.Label>Username</Form.Label>
                     <Form.Control
-                        // size='sm'
 						required
                         // className='m-4 w-50'
 						autoFocus
@@ -57,8 +57,12 @@ function Login({ handleSetLogIn }) {
 						onChange={handleChange}
 					/>
 				</Form.Group>
-				<Button type='submit' variant="secondary">Login</Button>
-			</Form>
+                {error && 
+                <Alert severity="error">The username and password were not found in our records. Try again or <Link to='/signup'>Sign up here</Link>.</Alert>
+                 }
+				<Button type='submit' variant="secondary" className='mt-4'>Login</Button>
+            </Form>
+
 		</div>
     );
 }
