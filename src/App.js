@@ -10,6 +10,7 @@ import NewBook from './components/NewBook/NewBook';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import API_URL from './apiConfig';
+import CreateUser from './components/CreateUser/CreateUser';
 
 function App() {
 	const [logInStatus, setLogInStatus] = useState(
@@ -94,6 +95,7 @@ function App() {
 					path='/new-book'
 					element={<NewBook logInStatus={logInStatus} />}
 				/>
+				<Route path='/signup' element={<CreateUser />} />
 			</Routes>
 		</div>
 	);
