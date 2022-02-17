@@ -18,7 +18,6 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 	const handleOpen = (comment) => {
 		setOpen(true);
 		setEditCommentId(comment.id);
-		console.log(comment)
 	};
 
 	// bootstrap helper function to transition "add comment" button text to "adding..."

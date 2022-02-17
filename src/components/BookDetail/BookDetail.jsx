@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import API_URL from '../../apiConfig';
 import { useParams } from 'react-router-dom';
 import Comments from '../Comments/Comments';
+import style from './bookDetail.css'
 
 function BookDetail({ logInStatus, userData }) {
 	const { id } = useParams();
