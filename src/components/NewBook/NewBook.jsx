@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import API_URL from '../../apiConfig';
 import NewBookForm from '../NewBookForm/NewBookForm';
 import NotFoundModal from '../NotFoundModal/NotFoundModal';
@@ -72,7 +72,7 @@ function NewBook({ logInStatus }) {
                 return (
                     <div key={result.id} onClick={() => handleClick(result.id, result)}>
                         <p>{result.volumeInfo.title}</p>
-                            <img src={result.volumeInfo.imageLinks.thumbnail ? result.volumeInfo.imageLinks.thumbnail : "https://image.shutterstock.com/image-vector/no-image-available-vector-hand-260nw-745639717.jpg"} alt={result.volumeInfo.title} />
+                        <img src={result.volumeInfo.imageLinks.thumbnail ? result.volumeInfo.imageLinks.thumbnail : "https://image.shutterstock.com/image-vector/no-image-available-vector-hand-260nw-745639717.jpg"} alt={result.volumeInfo.title} />
                     </div>
                 )
             })}
