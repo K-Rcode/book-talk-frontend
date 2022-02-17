@@ -13,6 +13,7 @@ function NewBook({ logInStatus }) {
         topic: ''
     })
     const [searchResults, setSearchResults] = useState();
+    const [currentPick, setCurrentPick] = useState(null);
     const navigate = useNavigate();
     
     const handleChange = (e) => {
@@ -39,9 +40,9 @@ function NewBook({ logInStatus }) {
         }
     }
 
-    const handleClick = (id) => {
-        console.log('hi')
+    const handleClick = (id, result) => {
         getDatabaseExist(id)
+        setCurrentPick(result)
     }
 
     const getDatabaseExist = async (id) => {
@@ -67,16 +68,16 @@ function NewBook({ logInStatus }) {
                 handleSubmit={handleSubmit}
             />
             
-            {searchResults ? searchResults.map((result) => {
+            {searchResults && searchResults.map((result) => {
                 return (
-                    <div key={result.id} onClick={() => handleClick(result.id)}>
+                    <div key={result.id} onClick={() => handleClick(result.id, result)}>
                         <p>{result.volumeInfo.title}</p>
-                            <img src={result.volumeInfo.imageLinks.thumbnail} alt={result.volumeInfo.title} />
+                            <img src={result.volumeInfo.imageLinks.thumbnail ? result.volumeInfo.imageLinks.thumbnail : "https://image.shutterstock.com/image-vector/no-image-available-vector-hand-260nw-745639717.jpg"} alt={result.volumeInfo.title} />
                     </div>
                 )
-            }) :
-                ''}
+            })}
             <NotFoundModal
+                currentpick={currentPick}
                 show={modalShow}
         onHide={() => setModalShow(false)}
             />
