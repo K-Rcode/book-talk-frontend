@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import API_URL from '../../apiConfig';
 import NewBookForm from '../NewBookForm/NewBookForm';
 import NotFoundModal from '../NotFoundModal/NotFoundModal';
@@ -13,6 +13,7 @@ function NewBook({ logInStatus }) {
         topic: ''
     })
     const [searchResults, setSearchResults] = useState();
+    const [currentPick, setCurrentPick] = useState(null);
     const navigate = useNavigate();
     
     const handleChange = (e) => {
@@ -32,16 +33,15 @@ function NewBook({ logInStatus }) {
         try {
             const res = await fetch(url)
             const data = await res.json()
-            console.log(data)
             setSearchResults(data.items)
         } catch (error) {
             console.log(error)
         }
     }
 
-    const handleClick = (id) => {
-        console.log('hi')
+    const handleClick = (id, result) => {
         getDatabaseExist(id)
+        setCurrentPick(result)
     }
 
     const getDatabaseExist = async (id) => {
@@ -67,16 +67,16 @@ function NewBook({ logInStatus }) {
                 handleSubmit={handleSubmit}
             />
             
-            {searchResults ? searchResults.map((result) => {
+            {searchResults && searchResults.map((result) => {
                 return (
-                    <div key={result.id} onClick={() => handleClick(result.id)}>
+                    <div key={result.id} onClick={() => handleClick(result.id, result)}>
                         <p>{result.volumeInfo.title}</p>
-                            <img src={result.volumeInfo.imageLinks.thumbnail} alt={result.volumeInfo.title} />
+                        <img src={result.volumeInfo.imageLinks ? result.volumeInfo.imageLinks.thumbnail : "https://image.shutterstock.com/image-vector/no-image-available-vector-hand-260nw-745639717.jpg"} alt={result.volumeInfo.title} />
                     </div>
                 )
-            }) :
-                ''}
+            })}
             <NotFoundModal
+                currentpick={currentPick}
                 show={modalShow}
         onHide={() => setModalShow(false)}
             />

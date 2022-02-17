@@ -12,7 +12,7 @@ function BookDetail({ logInStatus, userData }) {
 			setBookData(null)
 		}
 		//eslint-disable-next-line
-	}, []);
+	}, [id]);
 
 	// Call to our API to get detailed book info
 	async function getSpecificBook() {
@@ -40,6 +40,7 @@ function BookDetail({ logInStatus, userData }) {
 				</div>
 				<p>This conversation started by: {bookData.owner}</p>
 				<Comments
+					id={id}
 					comments={bookData.comments}
 					logInStatus={logInStatus}
 					userData={userData}
