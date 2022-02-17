@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Form , Button, Toast, ToastContainer} from 'react-bootstrap';
+import { Form, Button, } from 'react-bootstrap';
 import { TiDelete, TiEdit } from 'react-icons/ti';
 import API_URL from '../../apiConfig';
+import { Alert } from '@mui/material';
+import EditCommentModal from '../EditCommentModal/EditCommentModal';
 
 function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
-	const [showA, setShowA] = useState(false);
 	const [isLoading, setLoading] = useState(false);
 	const [editCommentId, setEditCommentId] = useState(0);
+	const [commentDeleted, setCommentDeleted] = useState(false);
 	const [newComment, setNewComment] = useState({
 		body: '',
 		book_id: id,
 	});
+	const [open, setOpen] = useState(false);
+	const handleOpen = (comment) => {
+		setOpen(true);
+		setEditCommentId(comment.id);
+		console.log(comment)
+	};
 
 	// bootstrap helper function to transition "add comment" button text to "adding..."
 	function simulateNetworkRequest() {
@@ -30,12 +38,7 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 		getSpecificBook();
 		//eslint-disable-next-line
 	}, []);
-
-	// bootstrap function to show toast
-	const toggleShowA = (comment) => {
-		setShowA(!showA);
-		setEditCommentId(comment.id);
-	};
+	
 	function handleChange(event) {
 		setNewComment({ ...newComment, [event.target.id]: event.target.value });
 	}
@@ -61,7 +64,7 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 				getSpecificBook();
 			}
 		} catch (error) {
-			alert('something went wrong...try again');
+			
 		}
 	}
 
@@ -73,11 +76,15 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 				},
 			});
 			if (res.status === 204) {
-				alert('comment deleted');
+				// alert('comment deleted');
+				setCommentDeleted(true);
+				setTimeout(() => {
+					setCommentDeleted(false);
+				}, 3000);
 				getSpecificBook();
 			}
 		} catch (error) {
-			alert('something went wrong... try again');
+			
 		}
 	}
 
@@ -94,9 +101,10 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 			);
 			if (res.status === 200) {
 				getSpecificBook();
+				setOpen(false);
 			}
 		} catch (error) {
-			alert('something went wrong... try again');
+			
 		}
 	}
 
@@ -130,9 +138,7 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 								/>
 
 								<TiEdit
-									onClick={() => {
-										toggleShowA(comment);
-									}}
+									onClick={() => {handleOpen(comment)}}
 								/>
 							</>
 						)}
@@ -143,37 +149,12 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 					</div>
 				);
 			})}
-			<ToastContainer position='bottom-center' className='container-toast'>
-				<Toast show={showA} onClose={toggleShowA}>
-					<Toast.Header>
-						<img
-							src='holder.js/20x20?text=%20'
-							className='rounded me-2'
-							alt=''
-						/>
-						<strong className='me-auto'>Edit comment below</strong>
-						<small>11 mins ago</small>
-					</Toast.Header>
-					<Toast.Body>
-						<Form.Control
-							type='text'
-							placeholder='Comment here'
-							onChange={editComment}
-						/>
-						<Button
-							variant='primary'
-							onClick={() => {
-								handleEdit();
-							}}>
-							Update
-						</Button>
-					</Toast.Body>
-				</Toast>
-			</ToastContainer>
 
+			{commentDeleted && <Alert severity='success'>Comment deleted</Alert>}
+
+			{/* Add a comment */}
 			{logInStatus && (
 				<>
-					{/* <Form.Label htmlFor='inputPassword5'>Password</Form.Label> */}
 					<Form.Control
 						type='text'
 						id='body'
@@ -192,6 +173,7 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 					</Button>
 				</>
 			)}
+			<EditCommentModal handleEdit={handleEdit} editComment={editComment} open={open} setOpen={setOpen}/>
 		</div>
 	);
 }
