@@ -1,50 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import API_URL from '../../apiConfig';
+import { Card, Row, Col } from 'react-bootstrap';
 
 function Booklist(props) {
     const [books, setBooks] = useState();
     useEffect(() => {
-        // fetch(`${API_URL.google}flowers+inauthor:keyes&key=${process.env.REACT_APP_API_KEY}`)
-        // fetch(`${API_URL.url}books`)
-        //     .then(res => res.json())
-        //     .then(res => {
-        //         console.log(res)
-        //         setBooks(res)
-        //     })
         getBooks()
     }, [])
-
+    
     const getBooks = async () => {
         try {
             const res = await fetch(`${API_URL.url}books`)
-            // const res = await fetch(`${API_URL.google}flowers+inauthor:keyes&key=${process.env.REACT_APP_API_KEY}`)
-
             const data = await res.json()
             setBooks(data)
         } catch (error) {
             console.log(error)
         }
     }
-
+    
     if (!books) {
         return null
     }
     return (
         <div>
-           <h1>Books of the Day</h1>
-            {books.map((book) => {
-                return (
-                    <div className="book-card" key={book.id}>
-                        <Link to={`/book/${book.id}`}>
-                        <h5>{book.title}</h5>
-                            <img src={book.image} alt={book.title} />
-                        </Link>
-                    </div>
-                )
-            })}
-        </div>
-    );
-}
-
-export default Booklist;
+        
+        <h1>Books</h1>
+        <Row xs={1} sm={3} className="g-3 m-4">
+        {books.map((book) => (
+            <Col md='2' key={book.id}>
+            <Link to={`/book/${book.id}`}>
+            <Card>
+            <Card.Img
+            variant="top"
+            src={book.image} 
+            // width={100}
+            // height={180}
+            className='p-4'
+            />
+            <Card.Body>
+            <Card.Title>{book.title}</Card.Title>
+            <Card.Text>
+            by: {book.author}
+            </Card.Text>
+            </Card.Body>
+            </Card>
+            </Link>
+            </Col>
+            ))}
+            </Row>
+            </div>
+            );
+        }
+        
+        export default Booklist;
+        
