@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Toast from 'react-bootstrap/Toast';
-import ToastContainer from 'react-bootstrap/ToastContainer';
+import { Form , Button, Toast, ToastContainer} from 'react-bootstrap';
 import { TiDelete, TiEdit } from 'react-icons/ti';
 import API_URL from '../../apiConfig';
 
-function Comments({ comments, logInStatus, userData, getSpecificBook }) {
+function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 	const [showA, setShowA] = useState(false);
 	const [isLoading, setLoading] = useState(false);
 	const [editCommentId, setEditCommentId] = useState(0);
 	const [newComment, setNewComment] = useState({
 		body: '',
-		book_id: comments[0].book_id,
+		book_id: id,
 	});
 
 	// bootstrap helper function to transition "add comment" button text to "adding..."
@@ -37,7 +34,6 @@ function Comments({ comments, logInStatus, userData, getSpecificBook }) {
 	// bootstrap function to show toast
 	const toggleShowA = (comment) => {
 		setShowA(!showA);
-		console.log(comment);
 		setEditCommentId(comment.id);
 	};
 	function handleChange(event) {
@@ -48,43 +44,60 @@ function Comments({ comments, logInStatus, userData, getSpecificBook }) {
 		setNewComment({ ...newComment, body: event.target.value });
 	}
 
-	async function postComment() {
-		const res = await axios.post(`${API_URL.url}comments/`, newComment, {
-			headers: {
-				Authorization: `Token ${localStorage.getItem('token')}`,
-			},
-		});
-		console.log(res);
-	}
-
 	function handleClick() {
 		setLoading(true);
 		postComment();
-		setNewComment({ ...newComment, body: '' })
+		setNewComment({ ...newComment, body: '' });
 	}
 
-	async function handleDelete(comment) {
-		const res = await axios.delete(`${API_URL.url}comments/${comment.id}`, {
-			headers: {
-				Authorization: `Token ${localStorage.getItem('token')}`,
-			},
-		});
-		console.log(res);
-	}
-
-	async function handleEdit() {
-		// await event.preventDefault();
-
-		const res = await axios.put(
-			`${API_URL.url}comments/${editCommentId}`,
-			newComment,
-			{
+	async function postComment() {
+		try {
+			const res = await axios.post(`${API_URL.url}comments/`, newComment, {
 				headers: {
 					Authorization: `Token ${localStorage.getItem('token')}`,
 				},
+			});
+			if (res.status === 201) {
+				getSpecificBook();
 			}
-		);
-		console.log(res);
+		} catch (error) {
+			alert('something went wrong...try again');
+		}
+	}
+
+	async function handleDelete(comment) {
+		try {
+			const res = await axios.delete(`${API_URL.url}comments/${comment.id}`, {
+				headers: {
+					Authorization: `Token ${localStorage.getItem('token')}`,
+				},
+			});
+			if (res.status === 204) {
+				alert('comment deleted');
+				getSpecificBook();
+			}
+		} catch (error) {
+			alert('something went wrong... try again');
+		}
+	}
+
+	async function handleEdit() {
+		try {
+			const res = await axios.put(
+				`${API_URL.url}comments/${editCommentId}`,
+				newComment,
+				{
+					headers: {
+						Authorization: `Token ${localStorage.getItem('token')}`,
+					},
+				}
+			);
+			if (res.status === 200) {
+				getSpecificBook();
+			}
+		} catch (error) {
+			alert('something went wrong... try again');
+		}
 	}
 
 	if (!userData) {
