@@ -32,7 +32,7 @@ function Comments({ comments, logInStatus, userData, getSpecificBook }) {
 	useEffect(() => {
 		getSpecificBook();
 		//eslint-disable-next-line
-	}, [comments]);
+	}, []);
 
 	// bootstrap function to show toast
 	const toggleShowA = (comment) => {
