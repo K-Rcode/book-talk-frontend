@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import API_URL from '../../apiConfig';
 import { Card, Row, Col } from 'react-bootstrap';
+import Divider from '@mui/material/Divider';
 
 function Booklist(props) {
     const [books, setBooks] = useState();
@@ -26,18 +27,17 @@ function Booklist(props) {
         <div>
         
         <h1>Books</h1>
-        <Row xs={1} sm={3} className="g-3 m-4">
+        <Row xs={1} sm={2} className="g-3 m-4">
         {books.map((book) => (
             <Col md='2' key={book.id}>
             <Link to={`/book/${book.id}`}>
-            <Card>
+            <Card >
             <Card.Img
             variant="top"
             src={book.image} 
-            // width={100}
-            // height={180}
             className='p-4'
             />
+            <Divider></Divider>
             <Card.Body>
             <Card.Title>{book.title}</Card.Title>
             <Card.Text>

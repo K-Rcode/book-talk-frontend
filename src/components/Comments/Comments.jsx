@@ -5,7 +5,7 @@ import { TiDelete, TiEdit } from 'react-icons/ti';
 import API_URL from '../../apiConfig';
 import { Alert, styled, Typography } from '@mui/material';
 import EditCommentModal from '../EditCommentModal/EditCommentModal';
-import css from './comments.css'
+import './comments.css'
 import Divider from '@mui/material/Divider';
 
 const Root = styled('div')(({ theme }) => ({
@@ -140,7 +140,7 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 				return (
 					<Root>
 					<div key={comment.id}>
-						<Divider>H</Divider>
+						<Divider></Divider>
 							<p className='comment-body'>{comment.body}</p>
 							{/* <Typography style={{ color: "#e0e3e4" }}
 							variant="p" >{comment.body}</Typography> */}
