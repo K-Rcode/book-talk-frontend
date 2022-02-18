@@ -5,6 +5,7 @@ import { TiDelete, TiEdit } from 'react-icons/ti';
 import API_URL from '../../apiConfig';
 import { Alert } from '@mui/material';
 import EditCommentModal from '../EditCommentModal/EditCommentModal';
+import css from './comments.css'
 
 function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 	const [isLoading, setLoading] = useState(false);
@@ -130,14 +131,14 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 
 						{userData.username && userData.username === comment.owner && (
 							<>
-								<TiDelete
+
+								<TiEdit className='icons'
+									onClick={() => {handleOpen(comment)}}
+								/>
+								<TiDelete className='icons'
 									onClick={() => {
 										handleDelete(comment);
 									}}
-								/>
-
-								<TiEdit
-									onClick={() => {handleOpen(comment)}}
 								/>
 							</>
 						)}
