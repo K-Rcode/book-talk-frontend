@@ -42,15 +42,13 @@ function BookDetail({ logInStatus, userData }) {
 					<CardActionArea>
 						<CardMedia
 							component='img'
-							height=''
-							width=''
+							height='30%'
 							image={bookData.image}
 							alt={bookData.title}
 						/>
 						<CardContent>
 							<Typography gutterBottom variant='h5' component='div'>
 								{bookData.title}
-								{/* <br></br> */}
 							</Typography>
 							<Typography variant='body1'>by: {bookData.author}</Typography>
 							<Typography variant='body2' color='text.secondary'>

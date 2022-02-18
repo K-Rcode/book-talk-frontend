@@ -3,7 +3,7 @@ import { CardActionArea, Typography, CardMedia, CardContent, Card } from '@mui/m
 
 export default function SearchResults({ result, handleClick }) {
     return (
-    <Card sx={{ maxWidth: 275, m: 2, width: 275 }} key={result.id} onClick={() => handleClick(result.id, result)} raised={true}>
+    <Card sx={{ maxWidth: 275, m: 2, width: 275, }} key={result.id} onClick={() => handleClick(result.id, result)} raised={true}>
       <CardActionArea>
         <CardMedia
           component="img"
