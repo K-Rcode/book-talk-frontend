@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Form, Button, } from 'react-bootstrap';
 import { TiDelete, TiEdit } from 'react-icons/ti';
 import API_URL from '../../apiConfig';
-import { Alert, styled, Typography } from '@mui/material';
+import { Alert, styled } from '@mui/material';
 import EditCommentModal from '../EditCommentModal/EditCommentModal';
 import './comments.css'
 import Divider from '@mui/material/Divider';
@@ -15,8 +15,6 @@ const Root = styled('div')(({ theme }) => ({
     marginTop: theme.spacing(2),
 	},
 	backgroundColor: '#e0e3e488',
-    // color: '#e0e3e4'
-//   e0e3e4
 }));
 
 
@@ -142,8 +140,10 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 					<div key={comment.id}>
 						<Divider></Divider>
 							<p className='comment-body'>{comment.body}</p>
-							{/* <Typography style={{ color: "#e0e3e4" }}
-							variant="p" >{comment.body}</Typography> */}
+<p>
+	Coment by: {comment.owner} on{' '}
+	{comment.time_stamp.substring(0, 10)}
+</p>
 
 						{userData.username && userData.username === comment.owner && (
 							<>
@@ -158,13 +158,6 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 								/>
 							</>
 							)}
-							{/* <Typography style={{ color: "#e0e3e4" }}
-							variant="p" >Coment by: {comment.owner} on{' '}
-							{comment.time_stamp.substring(0, 10)}</Typography> */}
-						<p>
-							Coment by: {comment.owner} on{' '}
-							{comment.time_stamp.substring(0, 10)}
-						</p>
 						</div>
 						</Root>
 				);
