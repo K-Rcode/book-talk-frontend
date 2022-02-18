@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import API_URL from '../../apiConfig';
 import { useParams } from 'react-router-dom';
 import Comments from '../Comments/Comments';
-import style from './bookDetail.css'
+// import style from './bookDetail.css'
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
 
 function BookDetail({ logInStatus, userData }) {
 	const { id } = useParams();
@@ -10,8 +15,8 @@ function BookDetail({ logInStatus, userData }) {
 	useEffect(() => {
 		getSpecificBook();
 		return () => {
-			setBookData(null)
-		}
+			setBookData(null);
+		};
 		//eslint-disable-next-line
 	}, [id]);
 
@@ -30,24 +35,38 @@ function BookDetail({ logInStatus, userData }) {
 
 	return (
 		<>
-			<h2>{bookData.title}</h2>
-			<p>by: {bookData.author}</p>
-			<div className='book-detail-container'>
-				<div className='book-detail'>
-					<img src={bookData.image} alt={bookData.title} />
-					<p>{bookData.category}</p>
-					<p>Description:</p>
-					<p>{bookData.description}</p>
-				</div>
-				<p>This conversation started by: {bookData.owner}</p>
-				<Comments
-					id={id}
-					comments={bookData.comments}
-					logInStatus={logInStatus}
-					userData={userData}
-					getSpecificBook={getSpecificBook}
-				/>
+			<div className='card-container'>
+				<Card
+					sx={{ maxWidth: 600, border: 2, borderColor: 'grey.500' }}
+					className='m-auto'>
+					<CardActionArea>
+						<CardMedia
+							component='img'
+							height=''
+							width=''
+							image={bookData.image}
+							alt={bookData.title}
+						/>
+						<CardContent>
+							<Typography gutterBottom variant='h5' component='div'>
+								{bookData.title}
+								{/* <br></br> */}
+							</Typography>
+							<Typography variant='body1'>by: {bookData.author}</Typography>
+							<Typography variant='body2' color='text.secondary'>
+								{bookData.description}
+							</Typography>
+						</CardContent>
+					</CardActionArea>
+				</Card>
 			</div>
+			<Comments
+				id={id}
+				comments={bookData.comments}
+				logInStatus={logInStatus}
+				userData={userData}
+				getSpecificBook={getSpecificBook}
+			/>
 		</>
 	);
 }
