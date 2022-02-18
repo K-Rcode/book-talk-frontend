@@ -42,7 +42,7 @@ function CreateUser(props) {
 				}, 3000);
 			}
 		} catch (error) {
-			alert('something went wrong...try again');
+			
 		}
 	}
 
