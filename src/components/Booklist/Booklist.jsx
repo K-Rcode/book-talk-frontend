@@ -4,7 +4,23 @@ import API_URL from '../../apiConfig';
 import { Card, Row, Col } from 'react-bootstrap';
 import Divider from '@mui/material/Divider';
 
-function Booklist(props) {
+
+const styles = {
+    cardImage: {
+        objectFit: 'cover',
+        width: '80%',
+        height: '75%',
+        margin: 'auto'
+    },
+    cardText: {
+        textDecoration: 'none'
+    },
+    card: {
+        height: 400
+    }
+}
+
+function Booklist() {
     const [books, setBooks] = useState();
     useEffect(() => {
         getBooks()
@@ -30,12 +46,13 @@ function Booklist(props) {
         <Row xs={1} sm={2} className="g-3 m-4">
         {books.map((book) => (
             <Col md='2' key={book.id}>
-            <Link to={`/book/${book.id}`}>
-            <Card >
+            <Link to={`/book/${book.id}`} style={styles.cardText}>
+            <Card style={styles.card}>
             <Card.Img
             variant="top"
             src={book.image} 
             className='p-4'
+            style={styles.cardImage}
             />
             <Divider></Divider>
             <Card.Body>
