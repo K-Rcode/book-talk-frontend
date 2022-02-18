@@ -51,8 +51,6 @@ function App() {
 	};
 
 	const handleLogout = async () => {
-		// axios.post(`${API_URL}token/logout`, localStorage.getItem('token'));
-
 		try {
 			const response = await fetch(`${API_URL.url}token/logout`, {
 				method: 'POST',
