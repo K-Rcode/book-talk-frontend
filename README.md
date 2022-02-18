@@ -2,7 +2,7 @@
 
 ## Description
 
-Book Talk is a virtual book club! Create an account, sign in, then join in on the conversations! Search our database of books for on ongoing conversations or add a book to start a brand new conversation!
+Have you ever been deep into a good book, and just wanted to converse with someone else who’s equally as enthralled. Or just leave your thoughts in the air. Introduce Book Talk, an application built to host book discussions. Users can login, add a book that they would like to talk about, and leave comments for other readers to respond to.
 
 ## User Stories
 
