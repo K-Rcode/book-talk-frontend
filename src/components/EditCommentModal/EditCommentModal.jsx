@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import CloseIcon from '@mui/icons-material/Close';
 
 const style = {
 	position: 'absolute',
@@ -21,22 +22,21 @@ export default function EditCommentModal({
 	handleEdit,
 	editComment,
 	open,
-	setOpen,
-	handleOpen,
-	handleClose,
+	setOpen
 }) {
+	const handleClose = () => setOpen(false);
 	return (
-		<div>
+		<>
 			<Modal
 				open={open}
 				onClose={handleClose}
 				aria-labelledby='modal-modal-title'
 				aria-describedby='modal-modal-description'>
 				<Box sx={style}>
+					<CloseIcon onClick={ handleClose } />
 					<Typography id='modal-modal-title' variant='h6' component='h2'>
 						Edit comment below
 					</Typography>
-					<Typography id='modal-modal-description' sx={{ mt: 2 }}>
 						<TextField
 							fullWidth
 							id='outlined-basic'
@@ -44,7 +44,6 @@ export default function EditCommentModal({
 							variant='outlined'
 							onChange={editComment}
 						/>
-					</Typography>
 					<Button
 						variant='contained'
 						size='small'
@@ -55,6 +54,6 @@ export default function EditCommentModal({
 					</Button>
 				</Box>
 			</Modal>
-		</div>
+		</>
 	);
 }
