@@ -3,9 +3,22 @@ import axios from 'axios';
 import { Form, Button, } from 'react-bootstrap';
 import { TiDelete, TiEdit } from 'react-icons/ti';
 import API_URL from '../../apiConfig';
-import { Alert } from '@mui/material';
+import { Alert, styled, Typography } from '@mui/material';
 import EditCommentModal from '../EditCommentModal/EditCommentModal';
 import css from './comments.css'
+import Divider from '@mui/material/Divider';
+
+const Root = styled('div')(({ theme }) => ({
+  width: '100%',
+  ...theme.typography.body2,
+  '& > :not(style) + :not(style)': {
+    marginTop: theme.spacing(2),
+	},
+	backgroundColor: '#e0e3e488',
+    // color: '#e0e3e4'
+//   e0e3e4
+}));
+
 
 function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 	const [isLoading, setLoading] = useState(false);
@@ -76,7 +89,6 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 				},
 			});
 			if (res.status === 204) {
-				// alert('comment deleted');
 				setCommentDeleted(true);
 				setTimeout(() => {
 					setCommentDeleted(false);
@@ -126,8 +138,12 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 		<div>
 			{comments.map((comment) => {
 				return (
+					<Root>
 					<div key={comment.id}>
-						<p className='comment-body'>{comment.body}</p>
+						<Divider>H</Divider>
+							<p className='comment-body'>{comment.body}</p>
+							{/* <Typography style={{ color: "#e0e3e4" }}
+							variant="p" >{comment.body}</Typography> */}
 
 						{userData.username && userData.username === comment.owner && (
 							<>
@@ -141,12 +157,16 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 									}}
 								/>
 							</>
-						)}
+							)}
+							{/* <Typography style={{ color: "#e0e3e4" }}
+							variant="p" >Coment by: {comment.owner} on{' '}
+							{comment.time_stamp.substring(0, 10)}</Typography> */}
 						<p>
 							Coment by: {comment.owner} on{' '}
 							{comment.time_stamp.substring(0, 10)}
 						</p>
-					</div>
+						</div>
+						</Root>
 				);
 			})}
 
@@ -161,10 +181,7 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 						aria-describedby='passwordHelpBlock'
 						onChange={handleChange}
 						value={newComment.body}
-					/>
-					<Form.Text id='passwordHelpBlock' muted>
-						Add a new comment here ⬆️
-					</Form.Text>
+					/> 
 					<Button
 						variant='primary'
 						disabled={isLoading}
@@ -173,7 +190,12 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 					</Button>
 				</>
 			)}
-			<EditCommentModal handleEdit={handleEdit} editComment={editComment} open={open} setOpen={setOpen}/>
+			<EditCommentModal
+				handleEdit={handleEdit}
+				editComment={editComment}
+				open={open}
+				setOpen={setOpen}
+			/>
 		</div>
 	);
 }
