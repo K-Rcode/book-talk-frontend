@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Book Talk
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+Have you ever been deep into a good book, and just wanted to converse with someone else who’s equally as enthralled. Or just leave your thoughts in the air. Introduce Book Talk, an application built to host book discussions. Users can login, add a book that they would like to talk about, and leave comments for other readers to respond to.
 
-In the project directory, you can run:
+## User Stories
 
-### `npm start`
+### MVP
+- As a user, I would like to upload a book so I can start a conversation about it.
+- As a user, I would like to comment on books so I can be included in the dialog. 
+- As a user, I would like to see all comments about a particular book, so I can add relevant information in the dialog. 
+- As a user, I would like to log in, so no one can comment on my behalf
+- As a user, I would like to be able to edit and delete my comments, so I can correct mistakes. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### STRETCH
+- As a user, I would like to see a list of books another user read, to gauge if we have similar interests.
+- As a user, I would like to know which books are most recently talked about, so I can join in on a hot conversation.
+- As a user, I would like a publicly generated list of books(API) that I can choose from, so that I can find new books to check out. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+- HTML
+- CSS
+- JavaScript
+- React
+- React Icons
+- React Bootsrap
+- MaterialUI
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation Instructions
 
-### `npm run build`
+1. Fork and clone project repository
+2. Install all dependencies with below terminal command
+```
+npm install
+```
+3. cd into repository, then start local server by running the command below. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Open project in your code editor of choice.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contributions
+- Source code: [https://github.com/K-Rcode/book-talk-frontend](https://github.com/K-Rcode/book-talk-frontend)
+- Issue Tracker: [https://github.com/K-Rcode/book-talk-frontend/issues](https://github.com/K-Rcode/book-talk-frontend/issues)

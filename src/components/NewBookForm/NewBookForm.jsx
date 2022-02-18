@@ -3,6 +3,8 @@ import { Form, FloatingLabel, Button } from 'react-bootstrap';
 
 function NewBookForm({formState, handleChange, handleSubmit}) {
     return (
+        <>
+        <h2>Search for a Book Here</h2>
         <Form onSubmit={handleSubmit}>
             <FloatingLabel
                 controlId="title"
@@ -56,6 +58,7 @@ function NewBookForm({formState, handleChange, handleSubmit}) {
                     Submit
                 </Button>
             </Form>
+        </>
     );
 }
 
