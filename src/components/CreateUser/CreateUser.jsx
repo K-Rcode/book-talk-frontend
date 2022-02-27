@@ -99,7 +99,7 @@ function CreateUser(props) {
 						onChange={handleChange}
 					/>
 				</Form.Group>
-				<Button variant='primary' type='submit'>
+				<Button variant='secondary' type='submit'>
 					Submit
 				</Button>
 				{noMatch && <Alert variant='danger'>Passwords must match!</Alert>}

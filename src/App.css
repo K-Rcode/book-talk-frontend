@@ -3,3 +3,12 @@
   background-color: #eeeeeeff;
   font-family: 'Raleway', sans-serif;
 }
+
+a.nav-link {
+  color: black;
+}
+
+a.nav-link:hover {
+  text-decoration: underline;
+  color: black;
+}
