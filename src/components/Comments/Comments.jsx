@@ -122,6 +122,7 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 		return comments.map((comment) => {
 			return (
 				<div key={comment.id}>
+					<Divider></Divider>
 					<p className='comment-body'>{comment.body}</p>
 
 					<p>

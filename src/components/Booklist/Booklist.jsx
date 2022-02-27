@@ -7,16 +7,25 @@ import Divider from '@mui/material/Divider';
 
 const styles = {
     cardImage: {
-        objectFit: 'cover',
+        objectFit: 'contain',
         width: '80%',
-        height: '75%',
-        margin: 'auto'
+        height: '70%',
+        margin: 'auto',
+        // backgroundColor: '#f1faee',
     },
     cardText: {
-        textDecoration: 'none'
+        textDecoration: 'none',
+        // color: '#457b9d',
+        color: '#ffecd1',
+        fontWeight: 600,
+
     },
     card: {
-        height: 400
+        height: 375,
+        borderRadius: 15,
+        // backgroundColor: 'rgb(29, 53, 87, 0.9)',
+        backgroundColor: 'rgb(0, 21, 36, 0.7)',
+        minWidth: 300,
     }
 }
 
@@ -42,10 +51,10 @@ function Booklist() {
     return (
         <div>
         
-        <h1>Books</h1>
-        <Row xs={1} sm={2} className="g-3 m-4">
+        <h1>Our Books List</h1>
+        <Row xs={1} sm={2} className="g-4 m-4">
         {books.map((book) => (
-            <Col md='2' key={book.id}>
+            <Col md='3' key={book.id}>
             <Link to={`/book/${book.id}`} style={styles.cardText}>
             <Card style={styles.card}>
             <Card.Img
@@ -54,10 +63,10 @@ function Booklist() {
             className='p-4'
             style={styles.cardImage}
             />
-            <Divider></Divider>
+            <Divider style={styles.cardText}></Divider>
             <Card.Body>
-            <Card.Title>{book.title}</Card.Title>
-            <Card.Text>
+            <Card.Title style={styles.cardText}>{book.title}</Card.Title>
+            <Card.Text style={styles.cardText}>
             by: {book.author}
             </Card.Text>
             </Card.Body>
