@@ -10,6 +10,7 @@ function NotFoundModal(props) {
   }
 
   const createBook = async () => {
+    // Make 'book' for posting to database
     let book = {
       title: props.currentpick.volumeInfo.title,
       author: props.currentpick.volumeInfo.authors ? props.currentpick.volumeInfo.authors[0] : 'Unknown',
@@ -22,6 +23,7 @@ function NotFoundModal(props) {
       preview_link: props.currentpick.volumeInfo.previewLink
     }
 
+    // Post book to database
     const res = await fetch(`${API_URL.url}books/`, {
       method: 'POST',
       headers: {
@@ -29,17 +31,15 @@ function NotFoundModal(props) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(book)
-      })
-    console.log(res)
-    setTimeout(() => {
+    })
+    // If book posts successfuly, then query our database for book and navigate to detail page
       if (res.status === 201) {
-        fetch(`${API_URL.url}books/?search=${props.currentpick.id}`)
+         await fetch(`${API_URL.url}books/?search=${props.currentpick.id}`)
           .then(res => res.json())
           .then(res => {
-            navigate('/')
+            navigate(`/book/${res[0].id}`)
           })
       }    
-      }, 1500)
   }
 
   return (
