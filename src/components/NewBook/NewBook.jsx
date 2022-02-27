@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import API_URL from '../../apiConfig';
 import NewBookForm from '../NewBookForm/NewBookForm';
 import NotFoundModal from '../NotFoundModal/NotFoundModal';
-import { Box } from '@mui/material';
+import { Grid } from '@mui/material';
 import SearchResults from '../SearchResults/SearchResults';
 
 function NewBook({ logInStatus }) {
@@ -62,26 +62,21 @@ function NewBook({ logInStatus }) {
     }
     
     return (
-        <div className='m-5 w-75 '>
+        <div className='m-4 w-80'>
         <NewBookForm
         formState={formState}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        />
+            />
+            
+        <Grid container spacing={2}>
         
         {searchResults && searchResults.map((result) => {
             return (
-                <Box
-                sx={{
-                    display: 'grid',
-                    gap: 1,
-                    gridTemplateColumns: 'repeat(2, 1fr)',
-                }}
-                >
                 <SearchResults result={result} handleClick={handleClick} />
-                </Box>
                 )
-            })}
+        })}
+                </Grid>
             <NotFoundModal
             currentpick={currentPick}
             show={modalShow}
