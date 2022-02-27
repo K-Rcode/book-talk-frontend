@@ -11,11 +11,9 @@ const styles = {
         width: '80%',
         height: '70%',
         margin: 'auto',
-        // backgroundColor: '#f1faee',
     },
     cardText: {
         textDecoration: 'none',
-        // color: '#457b9d',
         color: '#ffecd1',
         fontWeight: 600,
 
@@ -23,7 +21,6 @@ const styles = {
     card: {
         height: 375,
         borderRadius: 15,
-        // backgroundColor: 'rgb(29, 53, 87, 0.9)',
         backgroundColor: 'rgb(0, 21, 36, 0.7)',
         minWidth: 300,
     }
@@ -51,7 +48,7 @@ function Booklist() {
     return (
         <div>
         
-        <h1>Our Books List</h1>
+        <h1>Our Booklist</h1>
         <Row xs={1} sm={2} className="g-4 m-4">
         {books.map((book) => (
             <Col md='3' key={book.id}>
