@@ -2,12 +2,7 @@ import React, { useEffect, useState } from 'react';
 import API_URL from '../../apiConfig';
 import { useParams } from 'react-router-dom';
 import Comments from '../Comments/Comments';
-// import style from './bookDetail.css'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { CardActionArea, Card, CardContent, CardMedia, Typography, Container, } from '@mui/material';
 
 function BookDetail({ logInStatus, userData }) {
 	const { id } = useParams();
@@ -35,9 +30,9 @@ function BookDetail({ logInStatus, userData }) {
 
 	return (
 		<>
-			<div className='card-container'>
+			<Container maxWidth="md" sx={{ display: 'flex'}}>
 				<Card
-					sx={{ maxWidth: 600, border: 2, borderColor: 'grey.500' }}
+					sx={{ maxWidth: '70%', border: 2, borderColor: 'grey.500', }}
 					className='m-auto'>
 					<CardActionArea>
 						<CardMedia
@@ -57,14 +52,14 @@ function BookDetail({ logInStatus, userData }) {
 						</CardContent>
 					</CardActionArea>
 				</Card>
-			</div>
 			<Comments
 				id={id}
 				comments={bookData.comments}
 				logInStatus={logInStatus}
 				userData={userData}
 				getSpecificBook={getSpecificBook}
-			/>
+				/>
+				</Container>
 		</>
 	);
 }
