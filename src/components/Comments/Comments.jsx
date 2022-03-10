@@ -118,21 +118,6 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 		}
 	}
 
-	if (!userData) {
-		return comments.map((comment) => {
-			return (
-				<div key={comment.id} className='comments'>
-					<Divider></Divider>
-					<p className='comment-body'>{comment.body}</p>
-
-					<p>
-						Coment by: {comment.owner} on {comment.time_stamp.substring(0, 10)}
-					</p>
-				</div>
-			);
-		});
-	}
-
 	return (
 		<div className='comments'>
 			{comments.map((comment) => {
@@ -146,7 +131,7 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 									{comment.time_stamp.substring(0, 10)}
 								</p>
 
-						{userData.username && userData.username === comment.owner && (
+						{logInStatus && userData.username === comment.owner && (
 							<>
 
 								<TiEdit className='icons'
