@@ -13,9 +13,9 @@
 <img width="756" alt="Screen Shot 2022-03-09 at 9 38 09 PM" src="https://user-images.githubusercontent.com/93796800/157583903-e194ae30-3df3-4558-b04a-a4dca0d9a539.png">
 
 #### Sample Login Credentials
-username: sample
+username: test
 
-password: sample123
+password: tester123
 
 ## Description
 
