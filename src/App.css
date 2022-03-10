@@ -12,3 +12,14 @@ a.nav-link:hover {
   text-decoration: underline;
   color: black;
 }
+
+.headshotImg {
+  border-radius: 50%;
+  max-width: 150px;
+  padding: 10px;
+}
+
+.about-img {
+  display: flex;
+  justify-content: space-evenly;
+}
