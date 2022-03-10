@@ -1,7 +1,21 @@
 # Book Talk
 
-<img width="1727" alt="booklist_pg" src="https://user-images.githubusercontent.com/93682733/154694990-33e92122-638e-471d-88ba-41a0678800ea.png">
+#### Home Page
+<img width="756" alt="Screen Shot 2022-03-09 at 9 32 14 PM" src="https://user-images.githubusercontent.com/93796800/157583569-0ca67e6b-dfca-4828-9943-774bb2db2fe2.png">
 
+#### About Modal
+<img width="756" alt="Screen Shot 2022-03-09 at 9 37 47 PM" src="https://user-images.githubusercontent.com/93796800/157583875-e0b78877-5785-4802-ba7c-cf5ec810d36f.png">
+
+#### Book Search through third-party API
+<img width="756" alt="Screen Shot 2022-03-09 at 9 38 50 PM" src="https://user-images.githubusercontent.com/93796800/157583896-8a21c9f4-a80b-4fbe-aa72-152ac8a2216f.png">
+
+#### Signup Page
+<img width="756" alt="Screen Shot 2022-03-09 at 9 38 09 PM" src="https://user-images.githubusercontent.com/93796800/157583903-e194ae30-3df3-4558-b04a-a4dca0d9a539.png">
+
+#### Sample Login Credentials
+username: sample
+
+password: sample123
 
 ## Description
 
