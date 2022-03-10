@@ -1,9 +1,5 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import TextField from '@mui/material/TextField';
+import {Box, Button, Typography, Modal, TextField} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 const style = {
@@ -40,7 +36,7 @@ export default function EditCommentModal({
 						<TextField
 							fullWidth
 							id='outlined-basic'
-							label='Outlined'
+							label='Edit Comment'
 							variant='outlined'
 							onChange={editComment}
 						/>

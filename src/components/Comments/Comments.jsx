@@ -121,7 +121,7 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 	if (!userData) {
 		return comments.map((comment) => {
 			return (
-				<div key={comment.id}>
+				<div key={comment.id} className='comments'>
 					<Divider></Divider>
 					<p className='comment-body'>{comment.body}</p>
 
@@ -134,17 +134,17 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 	}
 
 	return (
-		<div>
+		<div className='comments'>
 			{comments.map((comment) => {
 				return (
 					<Root>
 					<div key={comment.id}>
 						<Divider></Divider>
 							<p className='comment-body'>{comment.body}</p>
-<p>
-	Coment by: {comment.owner} on{' '}
-	{comment.time_stamp.substring(0, 10)}
-</p>
+								<p>
+									- {comment.owner} - {' '}
+									{comment.time_stamp.substring(0, 10)}
+								</p>
 
 						{userData.username && userData.username === comment.owner && (
 							<>
@@ -177,7 +177,7 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 						value={newComment.body}
 					/> 
 					<Button
-						variant='primary'
+						variant='secondary'
 						disabled={isLoading}
 						onClick={!isLoading ? handleClick : null}>
 						{isLoading ? 'Adding...' : 'Add Comment'}
