@@ -22,7 +22,8 @@ const styles = {
         height: 375,
         borderRadius: 15,
         backgroundColor: 'rgb(0, 21, 36, 0.7)',
-        minWidth: 300,
+        width: 275,
+        margin: '0 auto'
     }
 }
 
@@ -49,7 +50,7 @@ function Booklist() {
         <div>
         
         <h1>Our Booklist</h1>
-        <Row xs={1} sm={2} className="g-4 m-4">
+            <Row xs={1} sm={2} md={2} lg={3} className="g-4 m-4">
         {books.map((book) => (
             <Col md='3' key={book.id}>
             <Link to={`/book/${book.id}`} style={styles.cardText}>
