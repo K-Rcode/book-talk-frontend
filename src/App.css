@@ -15,8 +15,10 @@ a.nav-link:hover {
 
 .headshotImg {
   border-radius: 50%;
-  max-width: 150px;
-  padding: 10px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  object-position: bottom;
 }
 
 .about-img {

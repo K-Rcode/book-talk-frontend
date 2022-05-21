@@ -1,4 +1,5 @@
-import {Modal, Stack} from 'react-bootstrap';
+import { Modal, Stack } from 'react-bootstrap';
+import keisha from '../assets/keisha.JPG'
 
 
 function About({ handleClose, show }) {
@@ -36,7 +37,7 @@ function About({ handleClose, show }) {
 							href='https://www.linkedin.com/in/keisha-gittens/'>
 							<img
 								className='headshotImg'
-								src='https://media-exp1.licdn.com/dms/image/C4D03AQE3qA2WbP184w/profile-displayphoto-shrink_400_400/0/1639697633507?e=1651708800&v=beta&t=E3GDKooMmEVuitMTFog7hu2O_ZrZUUmyhi9eIBW5obw'
+								src={keisha}
 								alt='Keisha'
 							/>
 						</a>
