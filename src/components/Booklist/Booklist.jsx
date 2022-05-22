@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import API_URL from '../../apiConfig';
-import { Card, Row, Col } from 'react-bootstrap';
+import { Card, Row, Col, Container } from 'react-bootstrap';
 import Divider from '@mui/material/Divider';
 
 
 const styles = {
     cardImage: {
         objectFit: 'contain',
-        width: '80%',
+        width: '90%',
         height: '70%',
         margin: 'auto',
     },
@@ -22,8 +22,8 @@ const styles = {
         height: 375,
         borderRadius: 15,
         backgroundColor: 'rgb(0, 21, 36, 0.7)',
-        width: 275,
-        margin: '0 auto'
+        width: 300,
+        margin: '0 auto',
     }
 }
 
@@ -49,10 +49,11 @@ function Booklist() {
     return (
         <div>
         
-        <h1>Our Booklist</h1>
-            <Row xs={1} sm={2} md={2} lg={3} className="g-4 m-4">
+            <h1>Our Booklist</h1>
+            <Container>
+            <Row className="g-4 m-4">
         {books.map((book) => (
-            <Col md='3' key={book.id}>
+            <Col md='6' lg={true} key={book.id}>
             <Link to={`/book/${book.id}`} style={styles.cardText}>
             <Card style={styles.card}>
             <Card.Img
@@ -72,7 +73,8 @@ function Booklist() {
             </Link>
             </Col>
             ))}
-            </Row>
+                </Row>
+                </Container>
             </div>
             );
         }
