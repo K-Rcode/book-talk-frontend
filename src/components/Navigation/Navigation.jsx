@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Nav } from 'react-bootstrap';
+import { Nav, Navbar, Container } from 'react-bootstrap';
 import About from '../About/About';
+
+import book from '../assets/bookLogo.jpeg'
 
 function Navigation({ handleLogout, userData, logInStatus }) {
     const [show, setShow] = useState(false);
@@ -9,11 +11,20 @@ function Navigation({ handleLogout, userData, logInStatus }) {
     const handleShow = () => setShow(true);
 
     return (
-        <nav>
-            <Nav defaultActiveKey="/home" as="ul">
-                <Nav.Item as="li">
-                    <Nav.Link href='/'>Home</Nav.Link>
-                </Nav.Item>
+        <>
+                <Navbar  style={{ marginBottom: '5%',}}>
+                <Container>
+                    <Navbar.Brand href="/">
+                        <img
+                        alt="Book Talk"
+                        src={book}
+                        width="40"
+                        height="40"
+                        className="d-inline-block align-top"
+                        />{' '}
+                        Book Talk
+                    </Navbar.Brand>
+                <Nav defaultActiveKey="/home" as="ul" >
                 <Nav.Item as="li" onClick={handleShow}>
                     <Nav.Link eventKey="about">About</Nav.Link>
                 </Nav.Item>
@@ -36,11 +47,13 @@ function Navigation({ handleLogout, userData, logInStatus }) {
                         </Nav.Item>
                     </>
                 )}
-            </Nav>
+                    </Nav>
+                    </Container>
+                </Navbar>
             {show && (
                 <About handleClose={handleClose} handleShow={handleShow} show={show} />
             )}
-        </nav>
+        </>
     );
 }
 
