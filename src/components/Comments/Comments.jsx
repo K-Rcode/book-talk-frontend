@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Form, Button, } from 'react-bootstrap';
 import { TiDelete, TiEdit } from 'react-icons/ti';
 import API_URL from '../../apiConfig';
-import { Alert, styled } from '@mui/material';
+import { Alert, styled, Typography } from '@mui/material';
 import EditCommentModal from '../EditCommentModal/EditCommentModal';
 import './comments.css'
 import Divider from '@mui/material/Divider';
@@ -120,6 +120,7 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 
 	return (
 		<div className='comments'>
+			<Typography variant='h5' sx={{marginBottom: 2}}>Comments</Typography>
 			{comments.map((comment) => {
 				return (
 					<Root>
