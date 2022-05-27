@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { Form, Button, } from 'react-bootstrap';
 import { TiDelete, TiEdit } from 'react-icons/ti';
 import API_URL from '../../apiConfig';
@@ -153,7 +154,7 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 			{commentDeleted && <Alert severity='success'>Comment deleted</Alert>}
 
 			{/* Add a comment */}
-			{logInStatus && (
+			{logInStatus ? (
 				<>
 					<Form.Control
 						type='text'
@@ -169,7 +170,7 @@ function Comments({ id, comments, logInStatus, userData, getSpecificBook }) {
 						{isLoading ? 'Adding...' : 'Add Comment'}
 					</Button>
 				</>
-			)}
+			) : (<p>Please <Link to={'/login'}>login</Link> or <Link to={'/signup'}>signup</Link> to leave a comment</p>)}
 			<EditCommentModal
 				handleEdit={handleEdit}
 				editComment={editComment}
